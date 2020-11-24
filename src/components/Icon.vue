@@ -1,9 +1,7 @@
 <template>
 <!-- <div v-for="(artwork, index) in artWorks" :key="index"></div> -->
-  <div class="main-container-app">
-    <div class="app-wrapper">
-      <router-view/>
-    </div>
+  <div class="main-container-icon">
+    <div class="padded-container" ref="iconPath"></div>
   </div>
 </template>
 
@@ -17,7 +15,7 @@
 //import {bus} from '@bit/piablo.lx-tech.bus';
 
 //Vuex
-import { mapActions } from 'vuex';
+//import { mapGetters, mapActions } from 'vuex';
 
 
 //colors
@@ -26,7 +24,7 @@ import { mapActions } from 'vuex';
 
 export default {
   props: [
-    'props'
+    'type'
   ],
   components: {
     // HelloWorld
@@ -37,47 +35,39 @@ export default {
   },
 
   methods: {
-    ...mapActions(['requestAnimatedFormsList']),
-    initializeAppData(){
-      this.requestAnimatedFormsList();
-    }
+    //...mapActions(['fetchTodos'])
   },
 
   //computed: mapGetters(['allTodos']),
 
   created(){
-    this.initializeAppData();
     // bus.$on("addFlashCardButtonComponent" + "onClick", (data) => {
     //   debugger;
     // })
+  },
+  mounted(){
+    let path = `url('../assets/icons/${this.type}.png');`;
+    
+    console.log(path)
+    this.$refs.iconPath.style.backgroundImage = path
   }
 }
 </script>
 
-<style>
-@import './globals/css/global.css';
-body{
-  padding: 0;
-  margin: 0;;
-}
-
-.main-container-app{
+<style scoped>
+.main-container-icon{
   width: 100%;
-  height: 100vh;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-
 }
-.app-wrapper{
-  width: 300px;
-  height: 500px;
-  border-radius: 20px;
-  overflow: hidden;
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  
+.padded-container{
+  width: calc(100% - 8px);
+  height: calc(100% - 8px);
+  background-image: url('../assets/icons/hamburger.png');
+  background-size: cover;
 }
-
 
 
 /* @media screen and (max-width: 600px) {

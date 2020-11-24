@@ -1,9 +1,7 @@
 <template>
 <!-- <div v-for="(artwork, index) in artWorks" :key="index"></div> -->
-  <div class="main-container-app">
-    <div class="app-wrapper">
-      <router-view/>
-    </div>
+  <div>
+    <slot></slot>
   </div>
 </template>
 
@@ -17,7 +15,7 @@
 //import {bus} from '@bit/piablo.lx-tech.bus';
 
 //Vuex
-import { mapActions } from 'vuex';
+//import { mapGetters, mapActions } from 'vuex';
 
 
 //colors
@@ -37,16 +35,12 @@ export default {
   },
 
   methods: {
-    ...mapActions(['requestAnimatedFormsList']),
-    initializeAppData(){
-      this.requestAnimatedFormsList();
-    }
+    //...mapActions(['fetchTodos'])
   },
 
   //computed: mapGetters(['allTodos']),
 
   created(){
-    this.initializeAppData();
     // bus.$on("addFlashCardButtonComponent" + "onClick", (data) => {
     //   debugger;
     // })
@@ -54,29 +48,7 @@ export default {
 }
 </script>
 
-<style>
-@import './globals/css/global.css';
-body{
-  padding: 0;
-  margin: 0;;
-}
-
-.main-container-app{
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-}
-.app-wrapper{
-  width: 300px;
-  height: 500px;
-  border-radius: 20px;
-  overflow: hidden;
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  
-}
+<style scoped>
 
 
 
